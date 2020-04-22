@@ -126,7 +126,7 @@ char * fmt(const int nb,const char *string,int *indexbuff,...)
 	}
 	va_end(args);
 	const int finalsize=lenofstr+lenofrecipers-(nb*2);
-	unsigned char *final;
+	char *final;
 	final=malloc(sizeof(char)*(finalsize+1));
 	int count=0,offset=0;
 	for (int i = 0; i < lenofstr; ++i)
