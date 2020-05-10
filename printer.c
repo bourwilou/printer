@@ -10,8 +10,10 @@ int occurences_expect(const char * string,const char * substring,const char * ex
 	const int lenofexpect=strlen(expect);
 	const int lenofstr=strlen(string);
 	const int lenofsubstr=strlen(substring);
-	char newbuff[lenofsubstr];
+	char *newbuff=malloc(sizeof(char*)*(lenofsubstr+1));
+	newbuff[lenofsubstr]='\0';
 	char *newbuff1=malloc(sizeof(char*)*(lenofexpect+1));
+	newbuff[lenofexpect]='\0';
 	int count=0;
 	for (int i = 0; i < lenofstr; i++)
 	{
@@ -44,7 +46,7 @@ int occurences_expect(const char * string,const char * substring,const char * ex
 		}
 	}
 	free(newbuff1);
-
+	free(newbuff);
 	return count;
 }
 int firstoccurencesfrom_expect(const char * string,const char * substring,const int from,const char * expect)
@@ -128,6 +130,7 @@ char * fmt(const int nb,const char *string,int *indexbuff,...)
 	const int finalsize=lenofstr+lenofrecipers-(nb*2);
 	char *final;
 	final=malloc(sizeof(char)*(finalsize+1));
+	final[finalsize]='\0';
 	int count=0,offset=0;
 	for (int i = 0; i < lenofstr; ++i)
 	{
@@ -167,8 +170,6 @@ char * fmt(const int nb,const char *string,int *indexbuff,...)
 		}
 	}
 	free(buffer);
-	final[finalsize]='\0';
-	
 	return final;
 }
 
